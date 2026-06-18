@@ -127,7 +127,7 @@ addTaskBtn.addEventListener('click', function () {
 
   const card = createTaskCard(taskCounter, taskTitleInput.value, taskCategorySelect.value)
   taskList.append(card)
-  emptyState.style.display = "none"
+  updateEmptyState()
 
   taskTitleInput.value = ""
   taskCategorySelect.value = ""
@@ -223,7 +223,7 @@ filterCategory.addEventListener('change', function () {
 clearAllBtn.addEventListener('click', function () {
   const cards = document.querySelectorAll(".task-card")
   cards.forEach(c => c.remove())
-  emptyState.style.display = "initial"
+  updateEmptyState()
   updateCounters()
 });
 
@@ -248,20 +248,19 @@ taskList.addEventListener('click', function (e) {
   const action = e.target.getAttribute('data-action');
   const card = e.target.closest('.task-card');
 
-  if (!card || !action) return; // click was on the list but not a button
+  if (!card || !action) return;
 
   if (action === 'delete') {
-    // TODO:
-    // card.remove();
-    // updateCounters(); updateEmptyState();
+    card.remove()
+    updateCounters()
+    updateEmptyState()
   }
 
   if (action === 'complete') {
-    // TODO:
-    // const current = card.getAttribute('data-status');
-    // const next = current === 'pending' ? 'complete' : 'pending';
-    // card.setAttribute('data-status', next);
-    // updateCounters();
+    const current = card.getAttribute('data-status')
+    const newStatus = current === 'pending' ? 'complete' : 'pending'
+    card.setAttribute('data-status', newStatus)
+    updateCounters()
   }
 
   if (action === 'edit') {
@@ -342,8 +341,8 @@ function updateCounters() {
 /** Shows/hides the empty state placeholder based on whether any cards exist. */
 function updateEmptyState() {
   // TODO:
-  // const hasCards = document.querySelectorAll('.task-card').length > 0;
-  // emptyState.style.display = hasCards ? 'none' : '';
+  const cards = document.querySelectorAll('.task-card')
+  emptyState.style.display = cards.length > 0 ? 'none' : ''
 }
 
 /*
