@@ -264,11 +264,34 @@ taskList.addEventListener('click', function (e) {
   }
 
   if (action === 'edit') {
-    // TODO:
-    // Get current title from card, replace card with an inline edit form
-    // using card.replaceWith(editForm)
-    // On save, build new card and use editForm.replaceWith(newCard)
+    const currentTitle = card.querySelector('.task-card__title').textContent
+    const input = document.createElement('input')
+    input.className = 'input'
+    input.value = currentTitle
+
+    const saveBtn = document.createElement('button')
+    saveBtn.className = 'btn btn--primary btn--sm'
+    saveBtn.textContent = 'Save'
+    saveBtn.setAttribute('data-action', 'save')
+
+    const editRow = document.createElement('div')
+    editRow.className = 'task-card'
+    editRow.setAttribute('data-id', card.dataset.id)
+    editRow.setAttribute('data-status', card.dataset.status)
+    editRow.setAttribute('data-category', card.dataset.category)
+    editRow.setAttribute('data-editing', 'true')
+    editRow.append(input, saveBtn)
+
+    card.replaceWith(editRow)
   }
+
+  if (action === 'save') {
+      const newTitle = card.querySelector('.input').value.trim()
+      if (!newTitle) return
+      const rebuilt = createTaskCard(card.dataset.id, newTitle, card.dataset.category)
+      rebuilt.setAttribute('data-status', card.dataset.status)
+      card.replaceWith(rebuilt)
+    }
 });
 
 
