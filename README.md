@@ -11,29 +11,6 @@ A task manager built with nothing but **HTML, CSS, and Vanilla JavaScript** — 
 
 ---
 
-## 📸 Screenshots
-
-### Dashboard — Dark Mode
-![Dashboard dark mode](./screenshots/dashboard-dark.png)
-
-### Dashboard — Light Mode
-![Dashboard light mode](./screenshots/dashboard-light.png)
-
-### Task List in Action
-![Tasks with mixed states](./screenshots/task-list.png)
-
-### Search & Category Filter
-![Search and filter](./screenshots/search-filter.png)
-
-### Event Propagation Demo (Console Output)
-![Console showing bubbling vs capturing order](./screenshots/propagation-console-bubbling.png)
-![Console showing bubbling vs capturing order](./screenshots/propagation-console-capturing.png)
-
-### Browser Rendering Pipeline Diagram
-![Rendering pipeline diagram](./screenshots/pipeline-diagram.png)
-
----
-
 ## 📖 Table of Contents
 
 - [Features](#-features)
@@ -161,6 +138,29 @@ cd taskflow
 ```
 
 Then just open `index.html` in a browser — or use a local server (e.g. the VS Code Live Server extension) for the best experience.
+
+---
+
+## 📸 Screenshots
+
+### Dashboard — Dark Mode
+![Dashboard dark mode](./screenshots/dashboard-dark.png)
+
+### Dashboard — Light Mode
+![Dashboard light mode](./screenshots/dashboard-light.png)
+
+### Task List in Action
+![Tasks with mixed states](./screenshots/task-list.png)
+
+### Search & Category Filter
+![Search and filter](./screenshots/search-filter.png)
+
+### Event Propagation Demo (Console Output)
+![Console showing bubbling vs capturing order](./screenshots/propagation-console-bubbling.png)
+![Console showing bubbling vs capturing order](./screenshots/propagation-console-capturing.png)
+
+### Browser Rendering Pipeline Diagram
+![Rendering pipeline diagram](./screenshots/pipeline-diagram.png)
 
 ---
 
