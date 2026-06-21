@@ -1,47 +1,35 @@
-/* ==========================================================================
-   TASKFLOW — style.css
-   Neutral dark-first design. Transitions: 0.15s only. No keyframe animations.
-   ========================================================================== */
-
-/* --------------------------------------------------------------------------
-   1. THEME TOKENS
-   All colors are CSS custom properties so the theme toggle only needs to
-   flip data-theme on <html> — no inline style overrides needed in JS.
-   -------------------------------------------------------------------------- */
 :root {
-  /* Dark theme (default) */
-  --bg:        #111111;
-  --surface:   #1b1b1b;
+  --bg: #111111;
+  --surface: #1b1b1b;
   --surface-2: #222222;
-  --border:    #2e2e2e;
-  --text-1:    #e2e2e2;
-  --text-2:    #888888;
-  --text-3:    #444444;
-  --accent:    #cccccc;
+  --border: #2e2e2e;
+  --text-1: #e2e2e2;
+  --text-2: #888888;
+  --text-3: #444444;
+  --accent: #cccccc;
 
-  --radius:     6px;
+  --radius: 6px;
   --transition: 0.15s ease;
 
-  --font-sans:    'Inter', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-display: 'Space Grotesk', system-ui, sans-serif;
-  --font-mono:    'JetBrains Mono', 'Fira Code', monospace;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 }
 
 [data-theme="light"] {
-  --bg:        #f2f2f2;
-  --surface:   #ffffff;
+  --bg: #f2f2f2;
+  --surface: #ffffff;
   --surface-2: #f7f7f7;
-  --border:    #e0e0e0;
-  --text-1:    #111111;
-  --text-2:    #666666;
-  --text-3:    #bbbbbb;
-  --accent:    #111111;
+  --border: #e0e0e0;
+  --text-1: #111111;
+  --text-2: #666666;
+  --text-3: #bbbbbb;
+  --accent: #111111;
 }
 
-/* --------------------------------------------------------------------------
-   2. RESET & BASE
-   -------------------------------------------------------------------------- */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -68,7 +56,9 @@ button {
   font-family: inherit;
 }
 
-input, select, button {
+input,
+select,
+button {
   outline: none;
 }
 
@@ -79,9 +69,6 @@ button:focus-visible {
   outline-offset: 2px;
 }
 
-/* --------------------------------------------------------------------------
-   3. LAYOUT
-   -------------------------------------------------------------------------- */
 .header {
   position: sticky;
   top: 0;
@@ -106,9 +93,6 @@ button:focus-visible {
   gap: 1rem;
 }
 
-/* --------------------------------------------------------------------------
-   4. HEADER BRAND
-   -------------------------------------------------------------------------- */
 .header__brand {
   display: flex;
   align-items: baseline;
@@ -132,9 +116,6 @@ button:focus-visible {
   transition: color var(--transition);
 }
 
-/* --------------------------------------------------------------------------
-   5. THEME TOGGLE BUTTON
-   -------------------------------------------------------------------------- */
 .theme-toggle {
   display: inline-flex;
   align-items: center;
@@ -163,15 +144,22 @@ button:focus-visible {
   stroke: currentColor;
 }
 
-/* Show sun (switch to light) in dark mode; show moon (switch to dark) in light mode */
-[data-theme="dark"]  .theme-icon--moon { display: none; }
-[data-theme="dark"]  .theme-icon--sun  { display: block; }
-[data-theme="light"] .theme-icon--sun  { display: none; }
-[data-theme="light"] .theme-icon--moon { display: block; }
+[data-theme="dark"] .theme-icon--moon {
+  display: none;
+}
 
-/* --------------------------------------------------------------------------
-   6. CARD  (general section wrapper)
-   -------------------------------------------------------------------------- */
+[data-theme="dark"] .theme-icon--sun {
+  display: block;
+}
+
+[data-theme="light"] .theme-icon--sun {
+  display: none;
+}
+
+[data-theme="light"] .theme-icon--moon {
+  display: block;
+}
+
 .card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -206,9 +194,6 @@ button:focus-visible {
   transition: color var(--transition);
 }
 
-/* --------------------------------------------------------------------------
-   7. TASK CREATION FORM
-   -------------------------------------------------------------------------- */
 .task-form {
   display: flex;
   gap: 0.625rem;
@@ -221,9 +206,6 @@ button:focus-visible {
   min-width: 0;
 }
 
-/* --------------------------------------------------------------------------
-   8. CONTROLS BAR  (search + filter + counters + clear all)
-   -------------------------------------------------------------------------- */
 .controls-bar {
   display: flex;
   align-items: center;
@@ -246,9 +228,6 @@ button:focus-visible {
   flex-shrink: 0;
 }
 
-/* --------------------------------------------------------------------------
-   9. FORM CONTROLS  (input, select)
-   -------------------------------------------------------------------------- */
 .input,
 .select {
   background: var(--surface);
@@ -274,7 +253,6 @@ button:focus-visible {
   border-color: var(--text-2);
 }
 
-/* Custom select arrow */
 .select {
   cursor: pointer;
   appearance: none;
@@ -291,13 +269,17 @@ option {
   color: var(--text-1);
 }
 
-/* Small variants */
-.input--sm  { font-size: 0.8rem; padding: 0.4rem 0.65rem; }
-.select--sm { font-size: 0.8rem; padding: 0.4rem 0.65rem; padding-right: 1.9rem; }
+.input--sm {
+  font-size: 0.8rem;
+  padding: 0.4rem 0.65rem;
+}
 
-/* --------------------------------------------------------------------------
-   10. BUTTONS
-   -------------------------------------------------------------------------- */
+.select--sm {
+  font-size: 0.8rem;
+  padding: 0.4rem 0.65rem;
+  padding-right: 1.9rem;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -318,7 +300,6 @@ option {
     opacity var(--transition);
 }
 
-/* Primary — inverted surface (text color becomes bg) */
 .btn--primary {
   background: var(--text-1);
   border-color: var(--text-1);
@@ -330,7 +311,6 @@ option {
   opacity: 0.82;
 }
 
-/* Ghost — bordered, transparent bg */
 .btn--ghost {
   background: transparent;
   border-color: var(--border);
@@ -343,7 +323,6 @@ option {
   color: var(--text-1);
 }
 
-/* Danger variant (used on delete) */
 .btn--danger {
   color: var(--text-3);
 }
@@ -354,15 +333,11 @@ option {
   background: rgba(224, 85, 85, 0.06);
 }
 
-/* Small variant */
 .btn--sm {
   font-size: 0.78rem;
   padding: 0.35rem 0.65rem;
 }
 
-/* --------------------------------------------------------------------------
-   11. STAT CHIPS  (pending / done counters)
-   -------------------------------------------------------------------------- */
 .stat-chip {
   font-family: var(--font-mono);
   font-size: 0.75rem;
@@ -377,9 +352,6 @@ option {
   transition: color var(--transition);
 }
 
-/* --------------------------------------------------------------------------
-   12. TASK LIST & EMPTY STATE
-   -------------------------------------------------------------------------- */
 .task-list {
   display: flex;
   flex-direction: column;
@@ -403,9 +375,6 @@ option {
   transition: color var(--transition);
 }
 
-/* --------------------------------------------------------------------------
-   13. TASK CARD
-   -------------------------------------------------------------------------- */
 .task-card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -424,7 +393,6 @@ option {
   border-color: var(--text-3);
 }
 
-/* Left status bar — thin colored strip indicating task state */
 .task-card__status-bar {
   width: 3px;
   min-height: 36px;
@@ -435,7 +403,6 @@ option {
   transition: background var(--transition);
 }
 
-/* Status bar becomes brighter when task is complete */
 .task-card[data-status="complete"] .task-card__status-bar {
   background: #00FF7F;
 }
@@ -452,7 +419,6 @@ option {
   margin-bottom: 0.2rem;
 }
 
-/* Monospace task ID — the signature design element */
 .task-card__id {
   font-family: var(--font-mono);
   font-size: 0.68rem;
@@ -470,7 +436,6 @@ option {
   transition: color var(--transition);
 }
 
-/* Complete state — strikethrough + muted color */
 .task-card[data-status="complete"] .task-card__title {
   text-decoration: line-through;
   color: var(--text-2);
@@ -482,9 +447,6 @@ option {
   flex-shrink: 0;
 }
 
-/* --------------------------------------------------------------------------
-   14. BADGE  (category label on task card)
-   -------------------------------------------------------------------------- */
 .badge {
   font-family: var(--font-mono);
   font-size: 0.62rem;
@@ -501,9 +463,6 @@ option {
     color var(--transition);
 }
 
-/* --------------------------------------------------------------------------
-   15. TAG  (concept label in section headers)
-   -------------------------------------------------------------------------- */
 .tag {
   font-family: var(--font-mono);
   font-size: 0.62rem;
@@ -519,16 +478,10 @@ option {
     color var(--transition);
 }
 
-/* --------------------------------------------------------------------------
-   16. UTILITY
-   -------------------------------------------------------------------------- */
 .mono {
   font-family: var(--font-mono);
 }
 
-/* --------------------------------------------------------------------------
-   17. PROPAGATION DEMO
-   -------------------------------------------------------------------------- */
 .prop-demo {
   margin-bottom: 1rem;
 }
@@ -551,7 +504,6 @@ option {
   margin-top: 0.75rem;
 }
 
-/* Child is a <button> styled as a full-width box */
 .prop-box--child {
   display: block;
   width: 100%;
@@ -601,9 +553,6 @@ option {
   transition: color var(--transition);
 }
 
-/* --------------------------------------------------------------------------
-   18. BROWSER RENDERING PIPELINE DIAGRAM
-   -------------------------------------------------------------------------- */
 .pipeline {
   display: flex;
   flex-direction: column;
@@ -629,13 +578,13 @@ option {
   flex-shrink: 0;
 }
 
-/* Merge bar: [line]——[badge]——[line] */
 .pipeline__merge-row {
   display: flex;
   align-items: center;
   width: 100%;
   max-width: 340px;
-  margin: 0.25rem 0;
+  margin-top: 1.5rem;
+  margin-bottom: 0.25rem;
 }
 
 .pipeline__merge-line {
@@ -667,7 +616,6 @@ option {
   align-items: center;
 }
 
-/* Pipeline Nodes */
 .p-node {
   padding: 0.48rem 1.25rem;
   border: 1px solid var(--border);
@@ -684,7 +632,6 @@ option {
     color var(--transition);
 }
 
-/* Source nodes: HTML / CSS */
 .p-node--source {
   font-family: var(--font-mono);
   font-size: 0.78rem;
@@ -694,27 +641,23 @@ option {
   letter-spacing: 0.05em;
 }
 
-/* Output nodes: DOM Tree / CSSOM Tree */
 .p-node--output {
   border-color: var(--text-2);
   color: var(--accent);
 }
 
-/* Result nodes: Render Tree, Layout, Paint, Composite */
 .p-node--result {
   border-color: var(--text-2);
   color: var(--text-1);
   min-width: 160px;
 }
 
-/* Invisible spacer to vertically align CSSOM with DOM Tree */
 .p-node--spacer {
   visibility: hidden;
   border-color: transparent;
   background: transparent;
 }
 
-/* Arrows */
 .p-arrow {
   font-size: 0.85rem;
   color: var(--text-3);
@@ -727,9 +670,6 @@ option {
   visibility: hidden;
 }
 
-/* --------------------------------------------------------------------------
-   19. RESPONSIVE
-   -------------------------------------------------------------------------- */
 @media (max-width: 560px) {
   .header {
     padding: 0.75rem 1rem;
@@ -776,6 +716,6 @@ option {
   }
 
   .task-card__actions .btn--sm:not(.btn--danger) {
-    display: none; /* hide Edit + Complete on very small screens if needed */
+    display: none;
   }
 }

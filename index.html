@@ -14,25 +14,13 @@
 </head>
 
 <body>
-
-  <!-- ============================================================
-       HEADER
-       Contains: brand name, subtitle, theme toggle
-       ============================================================ -->
   <header class="header">
     <div class="header__brand">
       <span class="header__logo">TaskFlow</span>
       <span class="header__sub">Vanilla JS · DOM APIs</span>
     </div>
 
-    <!--
-      Theme Toggle:
-      - data-theme attribute stores current theme state
-      - classList toggling on <html> switches CSS custom properties
-      - See Feature 4 in script.js
-    -->
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-      <!-- Sun icon — shown in dark mode (to switch to light) -->
       <svg class="theme-icon theme-icon--sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="12" cy="12" r="5" />
@@ -45,7 +33,7 @@
         <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
       </svg>
-      <!-- Moon icon — shown in light mode (to switch to dark) -->
+
       <svg class="theme-icon theme-icon--moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
@@ -54,24 +42,12 @@
     </button>
   </header>
 
-  <!-- ============================================================
-       MAIN CONTENT
-       ============================================================ -->
   <main class="main">
 
-    <!-- ----------------------------------------------------------
-         SECTION 1: TASK CREATION FORM
-         Feature 1 in script.js
-         ---------------------------------------------------------- -->
     <section class="card" id="formSection">
       <h2 class="card__title">Add Task</h2>
       <div class="task-form">
-        <!--
-          Attributes vs Properties (Feature 2):
-          - input.value           → DOM property (live, reflects what user types)
-          - input.getAttribute('value') → HTML attribute (initial default only)
-          These diverge as soon as the user types anything.
-        -->
+
         <input type="text" class="input" id="taskTitle" placeholder="What needs to be done?" autocomplete="off" />
         <select class="select" id="taskCategory">
           <option value="">Category</option>
@@ -84,9 +60,6 @@
       </div>
     </section>
 
-    <!-- ----------------------------------------------------------
-         SECTION 2: SEARCH, FILTER & STATS (Bonus Features)
-         ---------------------------------------------------------- -->
     <div class="controls-bar">
       <div class="controls-bar__left">
         <input type="text" class="input input--sm" id="searchInput" placeholder="Search tasks..." autocomplete="off" />
@@ -105,60 +78,17 @@
       </div>
     </div>
 
-    <!-- ----------------------------------------------------------
-         SECTION 3: TASK LIST
-         Feature 3, 5, 6 in script.js
-         ---------------------------------------------------------- -->
     <section id="taskSection">
-      <!--
-        Event Delegation target: attach ONE listener here on #taskList
-        to handle Edit / Complete / Delete for ALL cards inside.
-        (See Feature 6 in script.js)
-      -->
+
       <div class="task-list" id="taskList">
 
-        <!-- Empty state — shown when no tasks exist -->
         <div class="empty-state" id="emptyState">
           <p>No tasks yet — add one above.</p>
         </div>
 
-        <!--
-          ═══════════════════════════════════════════════════
-          TASK CARD TEMPLATE  (for reference when using JS)
-          ═══════════════════════════════════════════════════
-
-          JS: createElement() each of these nodes and assemble them.
-
-          <div class="task-card" data-id="1" data-status="pending" data-category="work">
-            <div class="task-card__status-bar"></div>
-            <div class="task-card__body">
-              <div class="task-card__meta">
-                <span class="task-card__id mono">#001</span>
-                <span class="badge">Work</span>
-              </div>
-              <p class="task-card__title">Your task title goes here</p>
-            </div>
-            <div class="task-card__actions">
-              <button class="btn btn--ghost btn--sm" data-action="edit">Edit</button>
-              <button class="btn btn--ghost btn--sm" data-action="complete">✓</button>
-              <button class="btn btn--ghost btn--sm btn--danger" data-action="delete">✕</button>
-            </div>
-          </div>
-
-          Notes:
-          - data-status toggles between "pending" and "complete"
-          - CSS automatically strikes through the title when data-status="complete"
-          - CSS changes the left status bar color based on data-status
-          - data-action on buttons is what Event Delegation reads to route logic
-        -->
-
       </div>
     </section>
 
-    <!-- ----------------------------------------------------------
-         SECTION 4: EVENT PROPAGATION DEMO
-         Feature 7 in script.js
-         ---------------------------------------------------------- -->
     <section class="card" id="propagationSection">
       <div class="card__head">
         <h2 class="card__title">Event Propagation Demo</h2>
@@ -168,12 +98,6 @@
         Click the inner button and open DevTools → Console to see the event execution order.
       </p>
 
-      <!--
-        Nested structure for bubbling / capturing demo:
-          Grandparent
-           └── Parent
-                └── Child (button)
-      -->
       <div class="prop-demo">
         <div class="prop-box prop-box--grandparent" id="grandparent">
           <span class="prop-label">Grandparent</span>
@@ -194,10 +118,6 @@
       </div>
     </section>
 
-    <!-- ----------------------------------------------------------
-         SECTION 5: BROWSER RENDERING PIPELINE
-         Feature 8 — visual diagram
-         ---------------------------------------------------------- -->
     <section class="card" id="pipelineSection">
       <div class="card__head">
         <h2 class="card__title">Browser Rendering Pipeline</h2>
@@ -206,7 +126,6 @@
 
       <div class="pipeline">
 
-        <!-- Two source branches: HTML and CSS -->
         <div class="pipeline__sources">
 
           <div class="pipeline__branch">
@@ -226,21 +145,17 @@
             <div class="p-arrow">↓</div>
             <div class="p-node">Parsing</div>
             <div class="p-arrow">↓</div>
-            <div class="p-node p-node--spacer"></div><!-- spacer to align CSSOM with DOM Tree -->
-            <div class="p-arrow p-arrow--hidden">↓</div>
             <div class="p-node p-node--output">CSSOM Tree</div>
           </div>
 
         </div>
 
-        <!-- Merge indicator -->
         <div class="pipeline__merge-row">
           <div class="pipeline__merge-line"></div>
           <div class="pipeline__merge-badge">DOM Tree + CSSOM Tree</div>
           <div class="pipeline__merge-line"></div>
         </div>
 
-        <!-- Result pipeline -->
         <div class="pipeline__output">
           <div class="p-arrow">↓</div>
           <div class="p-node p-node--result">Render Tree</div>
@@ -255,7 +170,7 @@
       </div>
     </section>
 
-  </main><!-- /main -->
+  </main>
 
   <script src="script.js"></script>
 </body>
