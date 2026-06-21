@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TaskFlow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header class="header">
+    <div class="header__brand">
+      <span class="header__logo">TaskFlow</span>
+      <span class="header__sub">Vanilla JS · DOM APIs</span>
+    </div>
+
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <svg class="theme-icon theme-icon--sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="5" />
+        <line x1="12" y1="1" x2="12" y2="3" />
+        <line x1="12" y1="21" x2="12" y2="23" />
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+        <line x1="1" y1="12" x2="3" y2="12" />
+        <line x1="21" y1="12" x2="23" y2="12" />
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+      </svg>
+
+      <svg class="theme-icon theme-icon--moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+      </svg>
+      <span id="themeLabel">Light mode</span>
+    </button>
+  </header>
+
+  <main class="main">
+
+    <section class="card" id="formSection">
+      <h2 class="card__title">Add Task</h2>
+      <div class="task-form">
+
+        <input type="text" class="input" id="taskTitle" placeholder="What needs to be done?" autocomplete="off" />
+        <select class="select" id="taskCategory">
+          <option value="">Category</option>
+          <option value="work">Work</option>
+          <option value="personal">Personal</option>
+          <option value="study">Study</option>
+          <option value="other">Other</option>
+        </select>
+        <button class="btn btn--primary" id="addTaskBtn">Add</button>
+      </div>
+    </section>
+
+    <div class="controls-bar">
+      <div class="controls-bar__left">
+        <input type="text" class="input input--sm" id="searchInput" placeholder="Search tasks..." autocomplete="off" />
+        <select class="select select--sm" id="filterCategory">
+          <option value="">All categories</option>
+          <option value="work">Work</option>
+          <option value="personal">Personal</option>
+          <option value="study">Study</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div class="controls-bar__right">
+        <span class="stat-chip"><span id="pendingCount">0</span> pending</span>
+        <span class="stat-chip"><span id="completedCount">0</span> done</span>
+        <button class="btn btn--ghost btn--sm" id="clearAllBtn">Clear all</button>
+      </div>
+    </div>
+
+    <section id="taskSection">
+
+      <div class="task-list" id="taskList">
+
+        <div class="empty-state" id="emptyState">
+          <p>No tasks yet — add one above.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="card" id="propagationSection">
+      <div class="card__head">
+        <h2 class="card__title">Event Propagation Demo</h2>
+        <span class="tag">Concept</span>
+      </div>
+      <p class="card__desc">
+        Click the inner button and open DevTools → Console to see the event execution order.
+      </p>
+
+      <div class="prop-demo">
+        <div class="prop-box prop-box--grandparent" id="grandparent">
+          <span class="prop-label">Grandparent</span>
+          <div class="prop-box prop-box--parent" id="parent">
+            <span class="prop-label">Parent</span>
+            <button class="prop-box prop-box--child" id="childBtn">
+              Child — Click me
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="prop-controls">
+        <button class="btn btn--ghost btn--sm" id="togglePropMode">
+          Mode: <span id="propModeLabel">Bubbling</span>
+        </button>
+        <span class="hint">Open DevTools → Console</span>
+      </div>
+    </section>
+
+    <section class="card" id="pipelineSection">
+      <div class="card__head">
+        <h2 class="card__title">Browser Rendering Pipeline</h2>
+        <span class="tag">Concept</span>
+      </div>
+
+      <div class="pipeline">
+
+        <div class="pipeline__sources">
+
+          <div class="pipeline__branch">
+            <div class="p-node p-node--source">HTML</div>
+            <div class="p-arrow">↓</div>
+            <div class="p-node">Parsing</div>
+            <div class="p-arrow">↓</div>
+            <div class="p-node">Tokenization</div>
+            <div class="p-arrow">↓</div>
+            <div class="p-node p-node--output">DOM Tree</div>
+          </div>
+
+          <div class="pipeline__gap"></div>
+
+          <div class="pipeline__branch">
+            <div class="p-node p-node--source">CSS</div>
+            <div class="p-arrow">↓</div>
+            <div class="p-node">Parsing</div>
+            <div class="p-arrow">↓</div>
+            <div class="p-node p-node--output">CSSOM Tree</div>
+          </div>
+
+        </div>
+
+        <div class="pipeline__merge-row">
+          <div class="pipeline__merge-line"></div>
+          <div class="pipeline__merge-badge">DOM Tree + CSSOM Tree</div>
+          <div class="pipeline__merge-line"></div>
+        </div>
+
+        <div class="pipeline__output">
+          <div class="p-arrow">↓</div>
+          <div class="p-node p-node--result">Render Tree</div>
+          <div class="p-arrow">↓</div>
+          <div class="p-node p-node--result">Layout</div>
+          <div class="p-arrow">↓</div>
+          <div class="p-node p-node--result">Paint</div>
+          <div class="p-arrow">↓</div>
+          <div class="p-node p-node--result">Composite</div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
